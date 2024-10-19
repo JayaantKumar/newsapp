@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import NewsItem from "./NewsItem";
+import Spinner from "./Spinner";
+import Proptypes from 'prop-types'
 
 export class News extends Component {
 
@@ -266,6 +268,18 @@ export class News extends Component {
     }
 ]
 
+    static defaultPorps = {
+        country: 'in',
+        pageSize: 5,
+        category: 'general'
+    }
+
+    static propTypes = {
+        country: PropTypes.string,
+        pageSize: PropTypes.number,
+        category: PropTypes.string,
+    }
+
   constructor() {
     super();
     this.state = {
@@ -278,7 +292,8 @@ export class News extends Component {
   render() {
     return (
       <div className="container my-3">
-        <h1>NewsApp - Top Headlines</h1>
+        <h1 className="text-center">NewsApp - Top Headlines</h1>
+        <Spinner/>
         <div className="row">
         {this.state.articles.map((element) => {
           return  <div className="col-md-4" key={element.url}>
